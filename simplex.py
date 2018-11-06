@@ -1,23 +1,23 @@
 import numpy as np
 
-# Determina se o tableau é ótimo(não existe negativos na linha Z)
+# Determina se o tableau eh otimo(nao existe negativos na linha Z)
 def great(tb):                  
     for number in tb[0]:
         if number < 0:
-            print("O tableau não é considerado ótimo: ")
+            print("\nO tableau nao eh considerado otimo: ")
             return False
     return True
 
-# Escolhe a coluna pivô e retorna sua posição
+# Escolhe a coluna pivo e retorna sua posição
 def chooseColumn(tb):
     pivotColumn = 0
     for pos in range(0, len(tb[0]) - 1):
         if tb[0][pos] < tb[0][pivotColumn]:
             pivotColumn = pos
-    print("Coluna pivô: ", pivotColumn + 1)
+    print("Coluna pivo: ", pivotColumn + 1)
     return pivotColumn
 
-# Escolhe a linha pivô e retorna sua posição
+# Escolhe a linha pivo e retorna sua posição
 def chooseLine(tb, column):
     listPivot = []
     for pos in range(1, len(tb)):
@@ -27,10 +27,10 @@ def chooseLine(tb, column):
             listPivot.append(colSolution / number)
         else:
             listPivot.append(-1)
-    print("Linha pivô: ", np.argmin(listPivot) + 2)    
-    return np.argmin(listPivot) + 1                                 #Retorna a posição do menor número não negativo
+    print("Linha pivo: ", np.argmin(listPivot) + 2)    
+    return np.argmin(listPivot) + 1                                 #Retorna a posição do menor número nao negativo
 
-# Faz o cálculo da nova linha pivô e retorna o tableau atualizado
+# Faz o cálculo da nova linha pivo e retorna o tableau atualizado
 def changePivotLine(tb, pc, pl):
     pivot = tb[pl][pc]
     for pos in range(0,len(tb[pl])):
@@ -43,7 +43,7 @@ def changeTb(tb, cp, cl):
     cp = cp
     for lin in range(0, len(tb)):                                           #Percorre cada linha
         if lin != cl:       
-            oposto = (-(tb[lin][cp]))                                       #Pega o oposto do pivô de cada linha
+            oposto = (-(tb[lin][cp]))                                       #Pega o oposto do pivo de cada linha
             for col in range(0, len(tb[0])):                                #Percorre cada número de cada linha
                 tb[lin][col] = newLine[col] * oposto + tb[lin][col]         #Realiza os cálculos
     return tb
@@ -54,14 +54,15 @@ def treatInput(inputString):
     
 def getInput():
     tb = []
-    print("Digite todos os valores de cada restrição, separados por vírgula, incluindo os coeficientes de todas as variáveis",
-    "\ncaso alguma variável não apareça, insira 0 como coeficiente")
-    print("Exemplo -> 20x1 + 60x2 + S1 = 60000. Na fórmula não apresenta as variáveis Z,S2 e S3, portanto colocar 0")
+    print("Digite todos os valores de cada restricao, separados por virgula, incluindo os coeficientes de todas as variaveis",
+    "\ncaso alguma variavel nao apareca, insira 0 como coeficiente")
+    print("Exemplo -> 20x1 + 60x2 + S1 = 60000. Na formula nao apresenta as variaveis Z,S2 e S3, portanto colocar 0")
+    #Adiciona um elemento em um vetor, onde cada elemento é um vetor de valores
     print("Digitar -> 0,20,60,1,0,0,60000")
-    tb.append(treatInput(input("Digite os coeficientes de Z, separados por vírgulas: ")))               #Cria uma matriz de elementos
-    restritions = input("Digite o número de restrições: ")
+    tb.append(treatInput(input("Digite os coeficientes de Z, separados por virgulas: ")))               
+    restritions = input("Digite o numero de restricoes: ")
     for restrition in range(0, int(restritions)):
-        print("Restrição ", restrition + 1, ":")
+        print("Restricao ", restrition + 1, ":")
         tb.append(treatInput(input()))
     return tb
 
@@ -73,8 +74,10 @@ def main():
         cl = chooseLine(tb,cp)
         tb = changePivotLine(tb,cp,cl)
         tb = changeTb(tb, cp, cl)
-    print("-------------\nResultado final:\nO ótimo é: ", tb[0][len(tb[0] - 1)])
-    print(tb)    
+    print("-------------\nResultado final:\nO otimo eh: ", tb[0][len(tb[0]) - 1])
+    print("Tableau:")
+    for item in tb:
+        print(item)   
 
 
 if __name__ == '__main__':
