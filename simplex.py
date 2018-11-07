@@ -1,4 +1,7 @@
 import numpy as np
+import sys
+
+nameFile = sys.argv[1]
 
 # Determina se o tableau eh otimo(nao existe negativos na linha Z)
 def great(tb):                  
@@ -50,9 +53,9 @@ def changeTb(tb, cp, cl):
 
 #Lê os coeficientes e insere em um vetor
 def treatInput(inputString):
-    return list(map(lambda x: int(x), inputString.split(",")))
+    return list(map(lambda x: int(x), inputString))
     
-def getInput():
+# def getInput():
     tb = []
     print("Digite todos os valores de cada restricao, separados por virgula, incluindo os coeficientes de todas as variaveis",
     "\ncaso alguma variavel nao apareca, insira 0 como coeficiente")
@@ -66,8 +69,16 @@ def getInput():
         tb.append(treatInput(input()))
     return tb
 
+#Faz o tratamento do conteúdo do arquivo para construir uma matriz
+def getFile():
+    fileContent = open(nameFile, 'r').readlines()    
+    tb = []
+    for line in fileContent:
+        tb.append(treatInput(line.replace('\n','').split(',')))
+    return tb
+
 def main():
-    tb = getInput()
+    tb = getFile()
     while(great(tb) != True):
         print("----------------------------------------")
         cp = chooseColumn(tb)
