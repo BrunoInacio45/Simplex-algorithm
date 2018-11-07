@@ -55,20 +55,6 @@ def changeTb(tb, cp, cl):
 def treatInput(inputString):
     return list(map(lambda x: int(x), inputString))
     
-# def getInput():
-    tb = []
-    print("Digite todos os valores de cada restricao, separados por virgula, incluindo os coeficientes de todas as variaveis",
-    "\ncaso alguma variavel nao apareca, insira 0 como coeficiente")
-    print("Exemplo -> 20x1 + 60x2 + S1 = 60000. Na formula nao apresenta as variaveis Z,S2 e S3, portanto colocar 0")
-    #Adiciona um elemento em um vetor, onde cada elemento é um vetor de valores
-    print("Digitar -> 0,20,60,1,0,0,60000")
-    tb.append(treatInput(input("Digite os coeficientes de Z, separados por virgulas: ")))               
-    restritions = input("Digite o numero de restricoes: ")
-    for restrition in range(0, int(restritions)):
-        print("Restricao ", restrition + 1, ":")
-        tb.append(treatInput(input()))
-    return tb
-
 #Faz o tratamento do conteúdo do arquivo para construir uma matriz
 def getFile():
     fileContent = open(nameFile, 'r').readlines()    
@@ -85,10 +71,11 @@ def main():
         cl = chooseLine(tb,cp)
         tb = changePivotLine(tb,cp,cl)
         tb = changeTb(tb, cp, cl)
-    print("-------------\nResultado final:\nO otimo eh: ", tb[0][len(tb[0]) - 1])
+    print("-------------")
     print("Tableau:")
     for item in tb:
-        print(item)   
+        print(item)
+    print("\nResultado final:\nO otimo eh: ", tb[0][len(tb[0]) - 1])
 
 
 if __name__ == '__main__':
