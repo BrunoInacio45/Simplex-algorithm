@@ -1,4 +1,4 @@
-## Instrução para uso
+## Instruções para uso
 
 Coloque a matriz a ser processada pelo programa no arquivo de texto chamado "matriz.txt", no seguinte formato:
 
@@ -10,7 +10,7 @@ Coloque a matriz a ser processada pelo programa no arquivo de texto chamado "mat
 
 0,12,4,0,0,1,14400
 
-É importante que coloque o Z, assim como as restrições, todas separadas por linha e cada valor separado por vírgula.
+É importante que coloque o Z, assim como as restrições, todas separadas por linha, cada valor separado por vírgula e não deve haver quebras de linhas.
 
 Após preencher o arquivo de texto, basta executar o comando de execução do python em sua máquina:
 ```bash
